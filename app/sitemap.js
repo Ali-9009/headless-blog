@@ -16,27 +16,18 @@ export default async function sitemap() {
     const staticPages = [
         {
             url: SITE_URL,
-            lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 1,
         },
         {
             url: `${SITE_URL}/blog`,
-            lastModified: new Date(),
             changeFrequency: "daily",
             priority: 0.9,
         },
         {
-            url: `${SITE_URL}/about`,
-            lastModified: new Date(),
+            url: `${SITE_URL}/contact-us`,
             changeFrequency: "monthly",
-            priority: 0.7,
-        },
-        {
-            url: `${SITE_URL}/author/saeed-ahmed-ashrafi`,
-            lastModified: new Date(),
-            changeFrequency: "weekly",
-            priority: 0.8,
+            priority: 0.6,
         },
     ];
 
@@ -49,7 +40,6 @@ export default async function sitemap() {
 
     const categoryPages = categories.map((category) => ({
         url: `${SITE_URL}/category/${category.slug}`,
-        lastModified: new Date(),
         changeFrequency: "weekly",
         priority: 0.6,
     }));

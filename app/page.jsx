@@ -3,7 +3,10 @@ import { ArrowRight, BookOpen, Play } from "lucide-react";
 import { FaFacebookF, FaYoutube, FaInstagram } from "react-icons/fa";
 
 import BlogCard from "@/components/BlogCard";
-import { getPosts } from "@/lib/wordpress";
+import {
+    getCategories,
+    getPosts,
+} from "@/lib/wordpress";
 import Image from "next/image";
 import StatsCounter from "@/components/StatsCounter";
 import YoutubeVideoCard from "@/components/YoutubeVideoCard";
@@ -12,6 +15,7 @@ import {
     shorts,
 } from "@/data/videos";
 import YoutubeShortCard from "@/components/YoutubeShortCard";
+import CategoryTabs from "@/components/CategoryTabs";
 
 const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL ||
@@ -38,7 +42,12 @@ export const metadata = {
 };
 
 export default async function Home() {
-    const posts = await getPosts();
+
+
+    const [posts, categories] = await Promise.all([
+        getPosts(),
+        getCategories(),
+    ]);
 
     const latestPosts = posts.slice(0, 6);
 
@@ -159,6 +168,11 @@ export default async function Home() {
                     </aside>
                 </div>
             </section>
+
+            <CategoryTabs
+                posts={posts}
+                categories={categories}
+            />
 
             <section
                 id="about"
