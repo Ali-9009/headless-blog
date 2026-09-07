@@ -12,6 +12,7 @@ const montserrat = Montserrat({
   display: "swap",
   preload: true,
 });
+
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://saeedahmedashrafi.com";
 
